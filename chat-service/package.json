@@ -1,0 +1,26 @@
+{
+  "name": "chat-service",
+  "version": "1.0.0",
+  "main": "./dist/src/index.js",
+  "scripts": {
+    "start": "node dist/src/index.js",
+    "start:dev": "ts-node src/index.ts",
+    "build": "tsc && tsc-alias",
+    "proto:gen": "sh generate-proto.sh chat.proto"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "tsc-alias": "^1.8.11",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.8.2"
+  },
+  "dependencies": {
+    "@grpc/grpc-js": "^1.13.0",
+    "@grpc/proto-loader": "^0.7.13",
+    "@grpc/reflection": "^1.0.4"
+  }
+}

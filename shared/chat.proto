@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package chat;
+
+message CreateChatRequest {
+  int64 ownerId = 1;
+  string name = 2;
+}
+
+message CreateChatResponse {
+  int32 id = 1;
+  string name = 2;
+}
+
+message JoinChatRequest {
+  int32 chat_id = 1;
+  int64 user_id = 2;
+}
+
+message JoinChatResponse {
+  string status = 1;
+}
+
+message LeaveChatRequest {
+  int32 chat_id = 1;
+  int64 user_id = 2;
+}
+
+message LeaveChatResponse {
+  string status = 1;
+}
+
+message GetMembersRequest {
+  int32 chat_id = 1;
+}
+
+message ChatMember {
+  int64 user_id = 1;
+  int32 chat_id = 2;
+}
+
+message GetMembersResponse {
+  repeated ChatMember members = 1;
+}
+
+message SharedMessageRequest {
+  int64 from_user_id = 1;
+  int32 chat_id = 2;
+  int64 timestamp = 3;
+  string content = 4;
+}
+
+message ShareMessageResponse {
+  int64 to_user_id = 1;
+  SharedMessageRequest message = 2;
+}
+
+service ChatService {
+  rpc createChat (CreateChatRequest) returns (CreateChatResponse) {};
+  rpc joinChat(JoinChatRequest) returns (JoinChatResponse) {};
+  rpc leaveChat(LeaveChatRequest) returns (LeaveChatResponse) {};
+  rpc getMembers(GetMembersRequest) returns (GetMembersResponse) {};
+  rpc shareMessage (stream SharedMessageRequest) returns (stream ShareMessageResponse) {};
+}

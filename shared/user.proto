@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package user;
+option java_multiple_files = true;
+
+service UserService {
+  rpc CreateUser (CreateUserRequest) returns (CreateUserResponse) {};
+  rpc GetUser (GetUserRequest) returns (GetUserResponse) {};
+  rpc DeleteUser (DeleteUserRequest) returns (DeleteUserResponse) {};
+}
+
+message CreateUserRequest {
+  string name = 1;
+}
+
+message CreateUserResponse {
+  int64 user_id = 1;
+  string name = 2;
+}
+
+message GetUserRequest {
+  int64 user_id = 1;
+}
+
+message GetUserResponse {
+  int64 user_id = 1;
+  string name = 2;
+}
+
+message DeleteUserRequest {
+  int64 user_id = 1;
+}
+
+message DeleteUserResponse {
+  string status = 1;
+}
